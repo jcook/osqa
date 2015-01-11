@@ -56,13 +56,13 @@
 
         });
 
-        function submitClicked(e, f) {
+        function submitClicked(e, btn) {
             if(!(browserTester('chrome') || browserTester('safari'))) {
-                $("input.submit")[0].disabled=true;
+                btn.disabled=true;
             }
             window.removeEventListener('beforeunload', beforeUnload, true);
-            if (f) {
-                f.submit();
+            if (btn.form) {
+                btn.form.submit();
             }
         }
 
@@ -150,9 +150,9 @@
             {% endif %}
 			
             {% if not request.user.is_authenticated %}                                                                        
-            <input name="ask" type="button" value="{% trans "Login/signup to post your question" %}" class="submit" onclick="submitClicked(event, this.form)"/>
+            <input name="ask" type="button" value="{% trans "Login/signup to post your question" %}" class="submit" onclick="submitClicked(event, this)"/>
 			{% else %}
-            <input name="ask" type="button" value="{% trans "Ask your question" %}" class="submit" onclick="submitClicked(event, this.form)"/>
+            <input name="ask" type="button" value="{% trans "Ask your question" %}" class="submit" onclick="submitClicked(event, this)"/>
             {% endif %}
         </form>
     </div>

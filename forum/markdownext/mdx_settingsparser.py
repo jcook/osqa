@@ -10,8 +10,10 @@ from forum import settings
 class SettingsExtension(markdown.Extension):
     def __init__(self, configs):
         self.configs = {} # settings.REP_TO_VOTE_UP}
-        for key, value in configs:
-            self.config[key] = value
+        # FIXME: what's the intention
+        if configs != None:
+            for key, value in configs:
+                self.config[key] = value
 
         # self.extendMarkdown(markdown.Markdown()., config)
 
