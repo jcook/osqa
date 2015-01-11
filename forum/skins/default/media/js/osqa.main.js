@@ -31,7 +31,7 @@ var response_commands = {
     refresh_page: function() {
         window.location.reload(true)
     },
-    
+
     update_post_score: function(id, inc) {
         var $score_board = $('#post-' + id + '-score');
         var current = parseInt($score_board.html())
@@ -78,7 +78,7 @@ var response_commands = {
         }
     },
 
-    mark_accepted: function(id) {        
+    mark_accepted: function(id) {
         var $answer = $('#answer-container-' + id);
         $answer.addClass('accepted-answer');
         $answer.find('.accept-answer').addClass('on');
@@ -96,7 +96,7 @@ var response_commands = {
         var $comment = $('#comment-' + id);
         $comment.css('background', 'red')
         $comment.fadeOut('slow', function() {
-            $comment.remove();    
+            $comment.remove();
         });
     },
 
@@ -181,7 +181,7 @@ function show_dialog (extern) {
             x: ($(window).width() / 2) + $(window).scrollLeft(),
             y: ($(window).height() / 2) + $(window).scrollTop()
         },
-        dim: false, 
+        dim: false,
         yes_text: messages.ok,
         yes_callback: default_close_function,
         no_text: messages.cancel,
@@ -242,13 +242,13 @@ function show_dialog (extern) {
         top: options.pos.y,
         left: options.pos.x
     });
-    
+
     top_position_change = (options.dim.h / 2)
     left_position_change = (options.dim.w / 2)
-    
+
     new_top_position = options.pos.y - top_position_change
     new_left_position = options.pos.x - left_position_change
-    
+
     if (new_left_position < 0) {
         left_position_change = 0
     }
@@ -261,7 +261,7 @@ function show_dialog (extern) {
     if ((options.event.pageX + options.dim.w) > ($(window).width() + $(window).scrollLeft())) {
         left_position_change = options.dim.w
     }
-    
+
     $dialog.animate({
         top: "-=" + top_position_change,
         left: "-=" + left_position_change,
@@ -470,7 +470,7 @@ $(function() {
                             $dropdown.slideUp('fast');
                     });
                 }
-            });    
+            });
         });
     });
 
@@ -478,7 +478,7 @@ $(function() {
         var $container = $(this);
         var $comment_tools = $container.parent().find('.comment-tools');
         var $comments_container = $container.parent().find('.comments-container');
-        
+
         var $form = $container.find('form');
 
         if ($form.length) {
@@ -1244,6 +1244,22 @@ function yourWorkWillBeLost(e) {
 
 function browserTester(browserString) {
     return navigator.userAgent.toLowerCase().indexOf(browserString) > -1;
+}
+
+function getClass(tagName, className) {
+    if(document.getElementsByClassName) {
+        return document.getElementsByClassName(className);
+    } else {
+        var tags = document.getElementsByTagName(tagName);
+        var tagArr = [];
+        for(var i=0; i < tags.length; i++) {
+            if(tags[i].class == className)
+                {
+                    tagArr[tagArr.length] = tags[i];
+                }
+        }
+        return tagArr;
+    }
 }
 
 // Add missing IE functionality

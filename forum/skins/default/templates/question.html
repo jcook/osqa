@@ -54,13 +54,13 @@
             });
         });
 
-        function submitClicked(e, f) {
+        function submitClicked(e, btn) {
             if(!(browserTester('chrome') || browserTester('safari'))) {
-                $("input.submit")[0].disabled=true;
+                btn.disabled=true;
             }
             window.removeEventListener('beforeunload', beforeUnload, true);
-            if (f) {
-                f.submit();
+            if (btn.form) {
+                btn.form.submit();
             }
         }
 
@@ -270,7 +270,7 @@
                         value="{% trans "Answer the question" %}" 
                         {% endif %}
                     {% endif %}
-                    class="submit" style="float:left" onclick="submitClicked(event, this.form)"/>
+                    class="submit" style="float:left" onclick="submitClicked(event, this)"/>
             {% endif %}
         </form>
     </div>

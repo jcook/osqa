@@ -36,14 +36,16 @@
         });
 
 
-        function submitClicked(e, f) {
+        function submitClicked(e, form) {
             if(!(browserTester('chrome') || browserTester('safari'))) {
-                $("input.submit")[0].disabled=true;
-                $("input.submit")[1].disabled=true;
+                var list = getClass('input', 'submit');
+                for(var i=0; i < list; i++) {
+                    list[i].disabled = true;
+                }
             }
             window.removeEventListener('beforeunload', beforeUnload, true);
-            if (f) {
-                f.submit();
+            if (form) {
+                form.submit();
             }
         }
 
