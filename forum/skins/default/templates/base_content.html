@@ -24,7 +24,6 @@
         <![endif]-->
         {% block forestyle %}{% endblock %}
 
-        <script src="http://www.google.com/jsapi" type="text/javascript"></script>
         <script type="text/javascript">
         /*<![CDATA[*/
             google.load("jquery", "1");
@@ -52,6 +51,7 @@
             }
         /*]]>*/
         </script>
+        <script type="text/javascript" src="{% media  "/media/js/jquery-1.2.6.min.js" %}"></script>
         <script type="text/javascript" src="{% media  "/media/js/osqa.main.js" %}"></script>
         {% if user_messages %}
         <style type="text/css">
