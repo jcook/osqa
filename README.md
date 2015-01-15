@@ -11,6 +11,14 @@ In spite of there is not a full picture in my mind, I'll try my best to draw it.
 
 Hope you can find what you need here. We are together always!
 
+## About the modules
+
+1. Q&A is the basic/first function/module in this site.
+2. Patients' caring may have several modules under it.
+2.1 Show up your recovery in a certain period so that others will know you or
+get confidence from you.
+2.2 Virtual grave that other people can recall.
+
 ## About the name
 
 AZRJ is the acronym of **Ai Zai Ren Jian** which is a Chinese word in spell.
