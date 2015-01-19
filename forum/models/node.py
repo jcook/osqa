@@ -13,6 +13,7 @@ from forum.utils.html import sanitize_html
 from forum.utils.userlinking import auto_user_link
 from forum.settings import SUMMARY_LENGTH
 from utils import PickledObjectField
+from forum.markdownext.mdx_auto_linker import AutoLinkerExtension
 
 class NodeContent(models.Model):
     title      = models.CharField(max_length=300)
@@ -29,7 +30,7 @@ class NodeContent(models.Model):
         return self.body
 
     def rendered(self, content):
-        return auto_user_link(self, self._as_markdown(content, *['auto_linker']))
+        return auto_user_link(self, self._as_markdown(content, AutoLinkerExtension()))
 
     @classmethod
     def _as_markdown(cls, content, *extensions):
@@ -504,9 +505,9 @@ class Node(BaseModel, NodeContent):
 
         if self.parent_id and not self.abs_parent_id:
             self.abs_parent = self.parent.absolute_parent
-        
+
         tags_changed = self._process_changes_in_tags()
-        
+
         super(Node, self).save(*args, **kwargs)
         if tags_changed:
             if self.tagnames.strip():
