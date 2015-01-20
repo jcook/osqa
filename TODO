@@ -6,3 +6,6 @@ Here is a TODO list what I've known!!!
  - https://github.com/jluttine/django-wiki/commit/9d411a781713857cdc35b1decf0e239008acf656
  - https://github.com/django-wiki/django-wiki/pull/314
  - https://github.com/waylan/Python-Markdown/issues/357
+
+2. fix `accept` button fail.
+ In a question, when I click `accept this answer` I got a failure. Figure it out soon.
