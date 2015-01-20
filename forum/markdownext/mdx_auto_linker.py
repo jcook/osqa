@@ -100,16 +100,11 @@ class AutoLinker(markdown.postprocessors.Postprocessor):
         return text
 
 class AutoLinkerExtension(markdown.extensions.Extension):
-    def __init__(self, **kwargs):
-        # TODO: do we need `configs`?
-        self.config = {'option1' : ['value1', 'description1'],
-                       'option2' : ['value2', 'description2'] }
-        super(AutoLinkerExtension, self).__init__(**kwargs)
-
     def extendMarkdown(self, md, md_globals):
         md.postprocessors['autolinker'] = AutoLinker()
 
-def makeExtension(**kwargs):
-    return AutoLinkerExtension(**kwargs)
+def makeExtension(configs=None):
+    if configs is None: configs = {}
+    return AutoLinkerExtension(configs=configs)
 
 

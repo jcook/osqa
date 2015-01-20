@@ -7,13 +7,12 @@ import re
 
 from forum import settings
 
-class SettingsExtension(markdown.Extension):
+class SettingsExtension(markdown.extensions.Extension):
     def __init__(self, configs):
         self.configs = {} # settings.REP_TO_VOTE_UP}
-        # FIXME: what's the intention
-        if configs != None:
-            for key, value in configs:
-                self.config[key] = value
+        if configs is None: configs = {}
+        for key, value in configs:
+            self.setConfig(key, value)
 
         # self.extendMarkdown(markdown.Markdown()., config)
 
@@ -45,4 +44,5 @@ class SettingsPre(Preprocessor):
 
 
 def makeExtension(configs=None) :
+    if configs is None: configs = {}
     return SettingsExtension(configs=configs)
