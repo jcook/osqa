@@ -7,5 +7,8 @@ Here is a TODO list what I've known!!!
  - https://github.com/django-wiki/django-wiki/pull/314
  - https://github.com/waylan/Python-Markdown/issues/357
 
-2. fix `accept` button fail.
+2. [DONE] fix `accept` button fail.
  In a question, when I click `accept this answer` I got a failure. Figure it out soon.
+ - the cause is that osqa used old API of django message! see
+ = https://code.djangoproject.com/wiki/SessionMessages
+ = https://docs.djangoproject.com/en/1.7/ref/contrib/messages/
