@@ -1,6 +1,7 @@
 from base import *
 from django.utils.translation import ugettext as _
 import re
+from forum.markdownext.mdx_limitedsyntax import LimitedSyntaxExtension
 
 class Comment(Node):
     friendly_name = _("comment")
@@ -20,7 +21,7 @@ class Comment(Node):
 
     def _comment(self):
         if settings.FORM_ALLOW_MARKDOWN_IN_COMMENTS:
-            return self.as_markdown('limitedsyntax')
+            return self.as_markdown(LimitedSyntaxExtension())
         else:
             return self.body
 
