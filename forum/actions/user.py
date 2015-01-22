@@ -160,7 +160,7 @@ class AwardAction(ActionProxy):
 
         self.user.save()
 
-        messages.success(request, _("""Congratulations, you have received a badge '%(badge_name)s'. <a href="%(badge_url)s">Find out who has it, too</a>.""") % dict(
+        messages.success(REQUEST_HOLDER.request, _("""Congratulations, you have received a badge '%(badge_name)s'. <a href="%(badge_url)s">Find out who has it, too</a>.""") % dict(
             badge_name=award.badge.name,
             badge_url=award.badge.get_absolute_url()))
 
