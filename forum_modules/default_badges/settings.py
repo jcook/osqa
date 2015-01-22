@@ -1,4 +1,4 @@
-from forum.settings import BADGES_SET
+from forum.settings.basic import BADGES_SET
 from forum.settings.base import Setting
 from django.utils.translation import ugettext_lazy as _
 

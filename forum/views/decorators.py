@@ -37,13 +37,17 @@ def render(template=None, tab=None, tab_title='', weight=500, tabbed=True):
         if tabbed and tab and tab_title:
             ui.register(ui.PAGE_TOP_TABS,
                         ui.PageTab(tab, tab_title, lambda: reverse(func.__name__), weight=weight))
-            
+
         return decorate.result.withfn(decorated, needs_params=True)(func)
 
     return decorator
 
 class CommandException(Exception):
-    pass
+    def __init__(self, message):
+        self.msg = '[AZRJ-exc]: ' + message
+
+    def __str__(self):
+        return repr(self.msg)
 
 class RefreshPageCommand(HttpResponse):
     def __init__(self):
@@ -66,8 +70,10 @@ def command(func, request, *args, **kwargs):
         if isinstance(e, CommandException):
             response = {
             'success': False,
-            'error_message': e.message
+            'error_message': str(e)
             }
+            logging.error("%s: %s" % (func.__name__, str(e)))
+            logging.error(traceback.format_exc())
         else:
             logging.error("%s: %s" % (func.__name__, str(e)))
             logging.error(traceback.format_exc())
