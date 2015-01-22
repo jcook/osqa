@@ -58,6 +58,3 @@ for k,v in get_modules_script_implementations('settings', BaseSetting).items():
         exec "%s = v" % k
 
 
-BADGES_SET = SettingSet('badges', _('Badges config'), _("Configure badges on your OSQA site."), 500)
-
-

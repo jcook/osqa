@@ -6,6 +6,8 @@ from forms import ImageFormWidget
 from django.utils.translation import ugettext_lazy as _
 from django.forms.widgets import Textarea
 
+BADGES_SET = SettingSet('badges', _('Badges config'), _("Configure badges on your OSQA site."), 500)
+
 BASIC_SET = SettingSet('basic', _('Basic settings'), _("The basic settings for your application"), 1)
 
 APP_LOGO = Setting('APP_LOGO', '/upfiles/logo.png', BASIC_SET, dict(
