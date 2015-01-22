@@ -77,8 +77,9 @@ class CannotDoubleActionException(CommandException):
 
 @decorate.withfn(command)
 def vote_post(request, id, vote_type):
-    if not request.method == 'POST':
-        raise CommandException(_("Invalid request"))
+    # FIXME: THe request.methos is 'GET' here. What's wrong?
+    #if not request.method == 'POST':
+    #    raise CommandException(_("Invalid request"))
 
 
     post = get_object_or_404(Node, id=id).leaf
@@ -343,7 +344,7 @@ def accept_answer(request, id):
 
             if accepted_from_author >= settings.MAXIMUM_ACCEPTED_PER_USER:
                 raise CommandException(ungettext("The author of this answer already has an accepted answer in this question.",
-                "Sorry but the author of this answer has reached the limit of accepted answers per question.", int(settings.MAXIMUM_ACCEPTED_PER_USER)))             
+                "Sorry but the author of this answer has reached the limit of accepted answers per question.", int(settings.MAXIMUM_ACCEPTED_PER_USER)))
 
 
         AcceptAnswerAction(node=answer, user=user, ip=request.META['REMOTE_ADDR']).save()
@@ -486,13 +487,13 @@ def convert_comment_to_answer(request, id):
         question = parent
     else:
         question = parent.question
-    
+
     if not user.is_authenticated():
         raise AnonymousNotAllowedException(_("convert comments to answers"))
 
     if not user.can_convert_comment_to_answer(comment):
         raise NotEnoughRepPointsException(_("convert comments to answers"))
-    
+
     CommentToAnswerAction(user=user, node=comment, ip=request.META['REMOTE_ADDR']).save(data=dict(question=question))
 
     return RefreshPageCommand()

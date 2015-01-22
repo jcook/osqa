@@ -13,4 +13,7 @@ Here is a TODO list what I've known!!!
  = https://code.djangoproject.com/wiki/SessionMessages
  = https://docs.djangoproject.com/en/1.7/ref/contrib/messages/
 
-3. seems `vote` function is not working.
+3. [FIXME] seems `vote` function is not working.
+ `vote` request is a 'GET' but the command handler need a 'POST'. I don't know why.
+ Just comment out the logic and I think 'GET' is enough for all info(id, vote_type).
+ Keep it as FIXME.
