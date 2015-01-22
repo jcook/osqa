@@ -12,3 +12,5 @@ Here is a TODO list what I've known!!!
  - the cause is that osqa used old API of django message! see
  = https://code.djangoproject.com/wiki/SessionMessages
  = https://docs.djangoproject.com/en/1.7/ref/contrib/messages/
+
+3. seems `vote` function is not working.
