@@ -17,3 +17,6 @@ Here is a TODO list what I've known!!!
  `vote` request is a 'GET' but the command handler need a 'POST'. I don't know why.
  Just comment out the logic and I think 'GET' is enough for all info(id, vote_type).
  Keep it as FIXME.
+
+4. Make email function working.
+5. Check admin function.

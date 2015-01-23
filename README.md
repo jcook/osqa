@@ -17,7 +17,8 @@ Hope you can find what you need here. We are together always!
 2. Patients' caring may have several modules under it.
 2.1 Show up your recovery in a certain period so that others will know you or
 get confidence from you.
-2.2 Virtual grave that other people can recall.
+2.2 Send out real gift or souvenir at each anniversary.
+2.3 Virtual grave that other people can recall.
 
 ## About the name
 
