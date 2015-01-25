@@ -531,7 +531,18 @@ def node_management(request):
     if type_filter:
         nodes = nodes.filter(node_type__in=type_filter)
 
-    state_types = NodeState.objects.filter(node__in=nodes).values_list('state_type', flat=True).distinct('state_type')
+    # XXX: Not all DBs support `distinct' function, so we do it ourself.
+    #      But performence will be low in large db.
+    #state_types = NodeState.objects.filter(node__in=nodes).values_list('state_type', flat=True).distinct('state_type')
+    state_types = NodeState.objects.filter(node__in=nodes).values_list('state_type', flat=True)
+
+    tmp_st_lst = []
+    for st in state_types:
+        if st not in tmp_st_lst:
+            tmp_st_lst.append(st)
+    state_types = tmp_st_lst
+
+    state_filter = [s for s in state_filter if s in state_types]
     state_filter = [s for s in state_filter if s in state_types]
 
     if state_filter:

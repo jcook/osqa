@@ -28,11 +28,9 @@ Here is a TODO list what I've known!!!
 
  I found almost all stuffs (change setting) could be done by admin page, so close this item :--/
 
-5. Check admin function. Add staticfiles config in settings. See:
+5. [DONE] Check admin function. Add staticfiles config in settings. See:
  - http://bbs.chinaunix.net/thread-4135441-1-1.html
  - https://docs.djangoproject.com/en/1.6/howto/static-files/
 
- Check each admin pages:
- [PASS] /admin/settings/xxx/
- [FAIL] /admin/tools/nodeman/
+ Check each admin pages: All `PASSed` means all can be entered in!
 
