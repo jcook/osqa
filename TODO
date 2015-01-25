@@ -18,12 +18,20 @@ Here is a TODO list what I've known!!!
  Just comment out the logic and I think 'GET' is enough for all info(id, vote_type).
  Keep it as FIXME.
 
-4. [Half-DONE] Make email function working.
+4. [DONE] Make email function working.
  Have made SMTP(qq) working. Test mail sent to hotmail. But need refine whole email arch first.
  So I keep current work in a private patch for recording.
 
- 4.1 Do we need set EMAIL_HOST dynamicly? How to do so? Re-Arch!!!
- 4.2 Do we need support different mail servers? During local dev stage, I use qq. 
- Later we may have a dedicate server, so ...
+ ~~4.1 Do we need set EMAIL_HOST dynamicly? How to do so? Re-Arch!!!~~
+ ~~4.2 Do we need support different mail servers? During local dev stage, I use qq.~~ 
+ ~~Later we may have a dedicate server, so ...~~
 
-5. Check admin function.
+ I found almost all stuffs (change setting) could be done by admin page, so close this item :--/
+
+5. Check admin function. Add staticfiles config in settings. See:
+ - http://bbs.chinaunix.net/thread-4135441-1-1.html
+
+ Check each admin pages:
+ [PASS] /admin/settings/xxx/
+ [FAIL] /admin/tools/nodeman/
+

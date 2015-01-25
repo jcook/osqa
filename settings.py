@@ -114,7 +114,14 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'django.contrib.messages',
     'forum',
+    'django.contrib.staticfiles',
 ]
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
+STATIC_URL = '/static/'
 
 if DEBUG:
     try:
