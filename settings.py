@@ -12,6 +12,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'forum.middleware.django_cookies.CookiePreHandlerMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.common.CommonMiddleware',
     'forum.middleware.extended_user.ExtendedUser',
@@ -26,6 +27,7 @@ MIDDLEWARE_CLASSES = [
 
 TEMPLATE_CONTEXT_PROCESSORS = [
     'django.core.context_processors.request',
+    'django.core.context_processors.i18n',
     'forum.context.application_settings',
     'django.contrib.messages.context_processors.messages',
     'forum.user_messages.context_processors.user_messages',
@@ -122,6 +124,14 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 STATIC_URL = '/static/'
+
+# I18N & L10N setting:
+USE_I18N = True
+USE_L10N = True
+LANGUAGE_CODE = 'zh-cn'
+LOCALE_PATHS = (
+    os.path.join(os.path.dirname(__file__), "locale"),
+)
 
 if DEBUG:
     try:

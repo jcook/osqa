@@ -76,7 +76,7 @@ class BonusRepAction(ActionProxy):
             messages.success(REQUEST_HOLDER.request, _("Congratulations, you have been awarded an extra %s reputation points.") % self._value +
                     '<br />%s' % self.extra.get('message', _('Thank you')))
         else:
-            messages.info(REQUEST_HOLDER.request, _("You have penalized %s in %s reputation points.") % (self._affected, self._value) +
+            messages.info(REQUEST_HOLDER.request, _("You have penalized %(affected)s in %(value)s reputation points.") % {'affected': self._affected, 'value': self._value} +
                     '<br />%s' % self.extra.get('message', ''))
 
     def describe(self, viewer=None):
