@@ -35,3 +35,9 @@ Here is a TODO list what I've known!!!
  Check each admin pages: All `PASSed` means all can be entered in!
 
 6. I18N
+ We will support zh-hans and it's better of zh-hant.
+
+ [FIXME] Many elements are not:
+ - translated or
+ - translated correct
+ [FIXME] When enable I18N and Ctrl+C to stop server, there is a exception from django.

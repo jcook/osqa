@@ -7020,7 +7020,6 @@ msgid "used"
 msgstr "用户"
 
 #: forum/views/readers.py:86
-#, fuzzy
 msgid "by popularity"
 msgstr "按流行程度排序"
 
