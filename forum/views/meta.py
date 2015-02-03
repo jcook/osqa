@@ -78,9 +78,6 @@ def feedback(request):
 
 feedback.CANCEL_MESSAGE=_('We look forward to hearing your feedback! Please, give it next time :)')
 
-def privacy(request):
-    return render_to_response('privacy.html', context_instance=RequestContext(request))
-
 @decorate.withfn(login_required)
 def logout(request):
     return render_to_response('logout.html', {

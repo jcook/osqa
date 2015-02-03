@@ -41,12 +41,7 @@ APP_COPYRIGHT = Setting('APP_COPYRIGHT', u'Copyright OSQA, 2015. Some rights res
 label = _("Copyright notice"),
 help_text = _("The copyright notice visible at the footer of your page.")))
 
-SUPPORT_URL = Setting('SUPPORT_URL', 'mailto:zengjie.cj@live.cn', BASIC_SET, dict(
-label = _("Support URL"),
-help_text = _("The URL provided for users to get support. It can be http: or mailto: or whatever your preferred support scheme is."),
-required=False))
-
-CONTACT_URL = Setting('CONTACT_URL', 'mailto:zengjie.cj@live.cn', BASIC_SET, dict(
+CONTACT_URL = Setting('CONTACT_URL', 'zengjie.cj@live.cn', BASIC_SET, dict(
 label = _("Contact URL"),
 help_text = _("The URL provided for users to contact you. It can be http: or mailto: or whatever your preferred contact scheme is."),
 required=False))

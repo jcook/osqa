@@ -21,8 +21,6 @@ except:
     pass
 
 ui.register(ui.HEADER_LINKS,
-            ui.Link(_('faq'), ui.Url('faq'), weight=400, name='FAQ'),
-            ui.Link(_('about'), ui.Url('about'), weight=300, name='ABOUT'),
 
             ui.Link(
                     visibility=ui.Visibility.ANONYMOUS,
@@ -59,8 +57,6 @@ ui.register(ui.FOOTER_LINKS,
                     text=_('contact'),
                     url=lambda u, c: settings.CONTACT_URL and settings.CONTACT_URL or "%s?next=%s" % (reverse('feedback'), cleanup_urls( c['request'].path)),
                     weight=400),
-            SupportLink(_('support'), settings.SUPPORT_URL, attrs={'target': '_blank'}, weight=300),
-            ui.Link(_('privacy'), ui.Url('privacy'), weight=200),
             ui.Link(_('faq'), ui.Url('faq'), weight=100),
             ui.Link(_('about'), ui.Url('about'), weight=0),
 )
