@@ -82,14 +82,16 @@
                 {{ form1.recaptcha }}
                 </div>
             {% endif %}
+            {% if form1.role %}
                 <div class="form-row-vertical margin-bottom">
                 <label for="role_id">{{ form1.role.label }}</label>
                 {% if form1.role.errors %} 
                     <p class="error">{{ form1.role.errors|join:", " }}</p>
                 {% endif %}
                 {{ form1.role }}
+            {% endif %}
                 </div>
-            <div class="submit-row"><input type="submit" class="submit" name="bnewaccount" id="bnewaccount" value="{% trans "create account" %}"/></div>
+            <div class="submit-row"><input type="submit" class="submit" name="bnewaccount" id="bnewaccount" value="{% trans "Create account" %}"/></div>
 		</form>
 	</div>
 {% endblock %}

@@ -1944,3 +1944,8 @@ div.wmd-button {
 div.wmd-button-bar {
     float:left;
 }
+
+ul#id_role li {
+    list-style: none;
+    float: left;
+}
