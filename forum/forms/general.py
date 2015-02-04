@@ -43,7 +43,7 @@ class UserNameField(StrippedNonEmptyCharField):
     def __init__(self,db_model=User, db_field='username', must_exist=False,skip_clean=False,label=_('choose a username'),**kw):
         self.must_exist = must_exist
         self.skip_clean = skip_clean
-        self.db_model = db_model 
+        self.db_model = db_model
         self.db_field = db_field
         error_messages={'required':_('user name is required'),
                         'taken':_('sorry, this name is taken, please choose another'),
@@ -125,7 +125,7 @@ class UserEmailField(forms.EmailField):
             except User.MultipleObjectsReturned:
                 raise forms.ValidationError(self.error_messages['taken'])
         else:
-            return email 
+            return email
 
 class UserRealNameField(StrippedNonEmptyCharField):
     def __init__(self, db_model=User, db_field='real_name', must_exist=True, skip_clean=False, label=_('Your real name'),**kw):
@@ -201,7 +201,7 @@ class SetPasswordForm(forms.Form):
     def clean_password2(self):
         """
         Validates that the two password inputs match.
-        
+
         """
         if 'password1' in self.cleaned_data:
             if self.cleaned_data['password1'] == self.cleaned_data['password2']:

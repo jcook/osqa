@@ -19,7 +19,7 @@ import logging
 
 class AnonymousUser(DjangoAnonymousUser):
     reputation = 0
-    
+
     def get_visible_answers(self, question):
         return question.answers.filter_state(deleted=False)
 
@@ -31,7 +31,7 @@ class AnonymousUser(DjangoAnonymousUser):
 
     def can_vote_down(self):
         return False
-    
+
     def can_vote_count_today(self):
         return 0
 
@@ -55,10 +55,10 @@ class AnonymousUser(DjangoAnonymousUser):
 
     def can_convert_to_comment(self, answer):
         return False
-    
+
     def can_convert_to_question(self, answer):
         return False
-    
+
     def can_convert_comment_to_answer(self, comment):
         return False
 
@@ -115,7 +115,7 @@ class UserManager(CachedManager):
     def get(self, *args, **kwargs):
         if not len(args) and len(kwargs) == 1 and 'username' in kwargs:
             matching_users = self.filter(username=kwargs['username'])
-            
+
             if len(matching_users) == 1:
                 return matching_users[0]
             elif len(matching_users) > 1:
@@ -198,7 +198,7 @@ class User(BaseModel, DjangoUser):
     @property
     def gravatar(self):
         return md5(self.email.lower()).hexdigest()
-    
+
     def save(self, *args, **kwargs):
         # If the community doesn't allow negative reputation, set it to 0
         if not settings.ALLOW_NEGATIVE_REPUTATION and self.reputation < 0:
@@ -281,15 +281,15 @@ class User(BaseModel, DjangoUser):
         today = datetime.date.today()
         return self.actions.filter(canceled=False, action_type="flag",
                                    action_date__gte=(today - datetime.timedelta(days=1))).count()
-    
+
     def can_vote_count_today(self):
         votes_today = settings.MAX_VOTES_PER_DAY
-        
+
         if settings.USER_REPUTATION_TO_MAX_VOTES:
             votes_today = votes_today + int(self.reputation)
-        
+
         return votes_today
-    
+
     def can_use_canned_comments(self):
         # The canned comments feature is available only for admins and moderators,
         # and only if the "Use canned comments" setting is activated in the administration.
@@ -355,7 +355,7 @@ class User(BaseModel, DjangoUser):
     def can_convert_to_comment(self, answer):
         return (not answer.marked) and (self.is_superuser or self.is_staff or answer.author == self or self.reputation >= int
                 (settings.REP_TO_CONVERT_TO_COMMENT))
-    
+
     def can_convert_to_question(self, node):
         return (not node.marked) and (self.is_superuser or self.is_staff or node.author == self or self.reputation >= int
                 (settings.REP_TO_CONVERT_TO_QUESTION))
