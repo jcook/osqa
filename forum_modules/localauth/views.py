@@ -15,8 +15,9 @@ def register(request):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
             email = form.cleaned_data['email']
+            role = form.cleaned_data['role']
 
-            user_ = User(username=username, email=email)
+            user_ = User(username=username, email=email, role=role)
             user_.set_password(password)
 
             if User.objects.all().count() == 0:

@@ -153,6 +153,37 @@ class UserRealNameField(StrippedNonEmptyCharField):
         except forms.ValidationError:
             raise forms.ValidationError(self.error_messages['required'])
 
+class UserRoleField(forms.ChoiceField):
+    def __init__(self, db_model=User, db_field='role', must_exist=False, skip_clean=False, label=_('Choose your role'),**kw):
+        self.must_exist = must_exist
+        self.skip_clean = skip_clean
+        self.db_model = db_model
+        self.db_field = db_field
+
+        CHOICES = ((('Patient', _('Patient')), ('Family', _('Family')), ('Doctor', _('Doctor'))))
+        error_messages={'required':_('Role is required')
+                    }
+        if 'error_messages' in kw:
+            error_messages.update(kw['error_messages'])
+            del kw['error_messages']
+        super(UserRoleField,self).__init__(
+                widget=forms.RadioSelect(attrs=login_form_widget_attrs),
+                label=label,
+                choices=CHOICES,
+                error_messages=error_messages,
+                **kw
+                )
+
+    def clean(self, role):
+        if self.skip_clean == True:
+            return role
+        try:
+            return super(UserRoleField, self).clean(role)
+        except forms.ValidationError:
+            raise forms.ValidationError(self.error_messages['required'])
+
+
+
 class SetPasswordForm(forms.Form):
     password1 = forms.CharField(widget=forms.PasswordInput(attrs=login_form_widget_attrs),
                                 label=_('choose password'),

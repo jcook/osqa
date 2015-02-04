@@ -82,29 +82,15 @@
                 {{ form1.recaptcha }}
                 </div>
             {% endif %}
+                <div class="form-row-vertical margin-bottom">
+                <label for="role_id">{{ form1.role.label }}</label>
+                {% if form1.role.errors %} 
+                    <p class="error">{{ form1.role.errors|join:", " }}</p>
+                {% endif %}
+                {{ form1.role }}
+                </div>
             <div class="submit-row"><input type="submit" class="submit" name="bnewaccount" id="bnewaccount" value="{% trans "create account" %}"/></div>
 		</form>
 	</div>
-    {% comment %}<!-- this form associates openID with an existing password-protected account, not yet functional -->
-    {% if form2 %}
-	<div class="login" style="display:none">
-        <form name="fverify" action="{% url "user_register" %}" method="POST">
-            {% csrf_token %}
-            {{ form2.next }}
-			<fieldset style="padding:10px">
-				<legend class="big">{% trans "Existing account" %}</legend>
-				<div class="form-row"><label for="id_username">{% trans "user name" %}</label><br/>{{ form2.username }}</div>
-				<div class="form-row"><label for="id_passwordl">{% trans "password" %}</label><br/>{{ form2.password }}</div>
-                <p><span class='big strong'>(Optional) receive updates by email</span> - only sent when there are any.</p>
-				<!--todo double check translation from chinese 确认 = "Register" -->
-				<div class="submit-row">
-					<input type="submit" class="submit" name="bverify" value="{% trans "Register" %}"/> 
-					<a href="{% url "user_sendpw" %}">{% trans "Forgot your password?" %}</a>
-				</div>
-			</fieldset>
-		</form>
-	</div>
-    {% endif %}
-    {% endcomment %}
 {% endblock %}
 <!-- end complete.html -->

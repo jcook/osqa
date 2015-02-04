@@ -1,4 +1,4 @@
-from forum.forms import NextUrlField, UserNameField, UserEmailField, SetPasswordForm
+from forum.forms import NextUrlField, UserNameField, UserEmailField, SetPasswordForm, UserRoleField
 from forum.models import Question
 from forum.modules import call_all_handlers
 from django.contrib.contenttypes.models import ContentType
@@ -13,6 +13,7 @@ class ClassicRegisterForm(SetPasswordForm):
     next = NextUrlField()
     username = UserNameField()
     email = UserEmailField()
+    role = UserRoleField()
 
     def __init__(self, *args, **kwargs):
         super(ClassicRegisterForm, self).__init__(*args, **kwargs)
