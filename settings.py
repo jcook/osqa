@@ -125,14 +125,6 @@ STATICFILES_FINDERS = (
 )
 STATIC_URL = '/static/'
 
-# I18N & L10N setting:
-USE_I18N = True
-USE_L10N = True
-LANGUAGE_CODE = 'zh-cn'
-LOCALE_PATHS = (
-    os.path.join(os.path.dirname(__file__), "locale"),
-)
-
 if DEBUG:
     try:
         import debug_toolbar

@@ -85,7 +85,7 @@ class TagPaginatorContext(pagination.PaginatorContext):
             (_('name'), pagination.SimpleSort(_('by name'), 'name', _("sorted alphabetically"))),
             (_('used'), pagination.SimpleSort(_('by popularity'), '-used_count', _("sorted by frequency of tag use"))),
         ), default_sort=_('used'), pagesizes=(30, 60, 120))
-    
+
 
 def feed(request):
     return RssQuestionFeed(
@@ -104,7 +104,7 @@ def index(request):
                          feed_url=reverse('latest_questions_feed'),
                          paginator_context=paginator_context)
 
-@decorators.render('questions.html', 'unanswered', _('unanswered'), weight=400)
+@decorators.render('questions.html', 'unanswered', _('unanswered'), weight=400, tabbed=False)
 def unanswered(request):
     return question_list(request,
                          Question.objects.exclude(id__in=Question.objects.filter(children__marked=True).distinct()).exclude(marked=True),
@@ -112,11 +112,35 @@ def unanswered(request):
                          None,
                          _("Unanswered Questions"))
 
-@decorators.render('questions.html', 'questions', _('questions'), weight=0)
+# <Module>
+@decorators.render('questions.html', 'Questions', _('Questions'), weight=0)
 def questions(request):
     return question_list(request,
                          Question.objects.all(),
                          _('questions'))
+
+# <Module>
+@decorators.render('503.html', 'Sharing', _('Sharing'), weight=600)
+def sharing(request):
+    return question_list(request,
+                         Question.objects.all(),
+                         _('questions'))
+
+# <Module>
+@decorators.render('503.html', 'Track', _('Track'), weight=600)
+def track(request):
+    return question_list(request,
+                         Question.objects.all(),
+                         _('questions'))
+
+# <Module>
+@decorators.render('503.html', 'Graveyard', _('Graveyard'), weight=600)
+def graveyard(request):
+    return question_list(request,
+                         Question.objects.all(),
+                         _('questions'))
+
+
 
 @decorators.render('questions.html')
 def tag(request, tag):
@@ -292,7 +316,7 @@ def question_search(request, keywords):
                          feed_url=feed_url, feed_sort=rank_feed and (can_rank,) or '-added_at')
 
 
-@decorators.render('tags.html', 'tags', _('tags'), weight=100)
+@decorators.render('tags.html', 'tags', _('tags'), weight=100, tabbed=False)
 def tags(request):
     stag = ""
     tags = Tag.active.all()
@@ -346,10 +370,10 @@ def answer_redirect(request, answer):
     pagesize = pc.pagesize(request)
 
     page = count / pagesize
-    
+
     if count % pagesize:
         page += 1
-        
+
     if page == 0:
         page = 1
 

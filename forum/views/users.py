@@ -25,7 +25,7 @@ from forum.settings import ONLINE_USERS
 
 from django.contrib import messages
 
-import json 
+import json
 import time
 import datetime
 import decorators
@@ -57,7 +57,7 @@ class UserAnswersPaginatorContext(pagination.PaginatorContext):
 
 USERS_PAGE_SIZE = 35# refactor - move to some constants file
 
-@decorators.render('users/users.html', 'users', _('users'), weight=200)
+@decorators.render('users/users.html', 'users', _('users'), weight=200, tabbed=False)
 def users(request):
     suser = request.REQUEST.get('q', "")
     users = User.objects.all()
@@ -220,7 +220,7 @@ def award_points(request, id):
     return {'commands': {
             'update_profile_karma': [user.reputation]
         }}
-    
+
 
 @decorate.withfn(decorators.command)
 def suspend(request, id):
@@ -374,7 +374,7 @@ def user_profile(request, user, **kwargs):
     "awards": awards,
     "total_awards" : len(awards),
     })
-    
+
 @user_view('users/recent.html', 'recent', _('recent activity'), _('recent user activity'))
 def user_recent(request, user, **kwargs):
     activities = user.actions.exclude(
@@ -480,7 +480,7 @@ def user_preferences(request, user, **kwargs):
             form = UserPreferencesForm(initial=preferences)
         else:
             form = UserPreferencesForm()
-            
+
     return {'view_user': user, 'form': form}
 
 

@@ -45,18 +45,21 @@ core_urls = (
     url(r'^%s$' % _('logout/'), app.meta.logout, name='logout'),
     url(r'^%s(?P<id>\d+)/%s$' % (_('answers/'), _('edit/')), app.writers.edit_answer, name='edit_answer'),
     url(r'^%s(?P<id>\d+)/$' % _('revisions/'), app.readers.revisions, name='revisions'),
+
+    # <Module> Question related
     url(r'^%s$' % _('questions/'), app.readers.questions, name='questions'),
     url(r'^%s%s$' % (_('questions/'), _('ask/')), app.writers.ask, name='ask'),
     url(r'^%s%s$' % (_('questions/'), _('related_questions/')), app.commands.related_questions, name='related_questions'),
-
-    url(r'^%s%s$' % (_('questions/'), _('unanswered/')), app.readers.unanswered, name='unanswered'),
     url(r'^%s(?P<mode>[\w\-]+)/(?P<user>\d+)/(?P<slug>.*)/$' % _('questions/'), app.readers.user_questions, name='user_questions'),
-
-
     url(r'^%s(?P<id>\d+)/%s$' % (_('questions/'), _('edit/')), app.writers.edit_question, name='edit_question'),
     url(r'^%s(?P<id>\d+)/%s$' % (_('questions/'), _('close/')), app.commands.close, kwargs=dict(close=True), name='close'),
     url(r'^%s(?P<id>\d+)/%s$' % (_('questions/'), _('reopen/')), app.commands.close, kwargs=dict(close=False), name='reopen'),
     url(r'^%s(?P<id>\d+)/%s$' % (_('questions/'), _('answer/')), app.writers.answer, name='answer'),
+    url(r'^%s(?P<id>\d+)/(?P<slug>[\w-]*)$' % _('question/'), 'django.shortcuts.redirect', {'url': '/questions/%(id)s/%(slug)s'}),
+    url(r'^%s(?P<id>\d+)/?$' % _('questions/'), app.readers.question, name='question'),
+    url(r'^%s(?P<id>\d+)/(?P<slug>.*)/(?P<answer>\d+)$' % _('questions/'), app.readers.question),
+    url(r'^%s(?P<id>\d+)/(?P<slug>.*)$' % _('questions/'), app.readers.question, name='question'),
+
     url(r'^%s(?P<action>\w+)/$' % _('pending-data/'), app.writers.manage_pending_data, name='manage_pending_data'),
 
     url(r'^%s(?P<id>\d+)/(?P<vote_type>[a-z]+)/' % _('vote/'), app.commands.vote_post, name='vote_post'),
@@ -79,11 +82,6 @@ core_urls = (
     url(r'^%s(?P<id>\d+)/' % _('convert/'), app.commands.convert_to_comment, name='convert_to_comment'),
     url(r'^%s(?P<id>\d+)/' % _('convert_to_question/'), app.writers.convert_to_question,name='convert_to_question'),
     url(r'^%s(?P<id>\d+)/' % _('wikify/'), app.commands.wikify, name='wikify'),
-
-    url(r'^%s(?P<id>\d+)/(?P<slug>[\w-]*)$' % _('question/'), 'django.shortcuts.redirect', {'url': '/questions/%(id)s/%(slug)s'}),
-    url(r'^%s(?P<id>\d+)/?$' % _('questions/'), app.readers.question, name='question'),
-    url(r'^%s(?P<id>\d+)/(?P<slug>.*)/(?P<answer>\d+)$' % _('questions/'), app.readers.question),
-    url(r'^%s(?P<id>\d+)/(?P<slug>.*)$' % _('questions/'), app.readers.question, name='question'),
 
 
     url(r'^%s$' % _('tags/'), app.readers.tags, name='tags'),
@@ -154,6 +152,14 @@ core_urls = (
 
     url(r'^feeds/rss[/]?$', app.readers.feed, name='latest_questions_feed'),
 
+    # <Module> Sharing related
+    url(r'^%s$' % _('sharing/'), app.readers.sharing, name='sharing'),
+
+    # <Module> Track related
+    url(r'^%s$' % _('track/'), app.readers.track, name='track'),
+
+    # <Module> Graveyard related
+    url(r'^%s$' % _('graveyard/'), app.readers.graveyard, name='graveyard'),
 )
 
 from forum.modules import get_modules_script
